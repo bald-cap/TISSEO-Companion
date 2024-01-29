@@ -1,0 +1,72 @@
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display{
+  text-align: center; 
+  width: fit-content;
+}
+
+body{
+    background-image: url(TOULOUSE.jpg);
+    background-repeat: no-repeat ;
+    background-position: center;
+    background-attachment: fixed;
+    background-size:cover; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label{
+    color: #0d0d0d;
+    font-size: larger;
+    font-weight: bold;
+    background-color: #F8F8FF;
+    padding: 7px 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 3px solid #0d0d0d;
+}
+
+.list-wrapper{
+    background-color: #0d0d0d;
+    color: #F8F8FF;
+    padding : 10px 150px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 2px solid #F8F8FF;
+}
+
+.list{
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+button{
+    color:  #F8F8FF;
+    background-color: #0d0d0d;
+    font-weight:  bold;
+    font-size: larger;
+    border-radius: 10px;
+    padding: 7px 10px;
+}
+
+button:hover{
+    color:  #0d0d0d;
+    background-color: #F8F8FF;
+    font-weight:  bold;
+    font-size: larger;
+    cursor: pointer;
+}
