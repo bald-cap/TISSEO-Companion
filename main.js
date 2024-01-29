@@ -8,7 +8,8 @@
 
 let bouton = document.querySelector(".display")
 let retour = document.querySelector(".retour")
-
+let section = document.createElement("section")
+let body = document.querySelector("body")
 
 function afficherDonnee(lignes){
     bouton.addEventListener('click', ()=>{
@@ -23,6 +24,8 @@ function afficherDonnee(lignes){
                 liElement.textContent = lignes[l].id
                 listWrapper.appendChild(liElement)
             } 
+            section.appendChild(listWrapper)
+            body.appendChild("body")
         } else{
             bouton.style.display = "flex"
             retour.style.display = "none"
