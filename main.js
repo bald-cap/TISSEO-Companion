@@ -3,34 +3,42 @@
 
 //REQUETES XHR
 
-//Défi 1.3 ->
+//Défi 1.2 ->
 //Affichage de tous les Lignes
 
 let bouton = document.querySelector(".display")
 let retour = document.querySelector(".retour")
 let section = document.createElement("section")
 let body = document.querySelector("body")
+let label = document.querySelector("label")
 
 function afficherDonnee(lignes){
+    let listWrapper = document.createElement("ol")
+    listWrapper.className = "list-wrapper"
+        for (let way = 0; way < lignes.length; way++){
+            let liElement = document.createElement("li")
+            liElement.className = "list"
+            liElement.textContent = lignes[way].shortName
+            listWrapper.appendChild(liElement)
+        } 
+    section.appendChild(listWrapper)
+    body.appendChild(section)   
+    
+
     bouton.addEventListener('click', ()=>{
-        if (bouton.style.display === "flex"){
-            bouton.style.display = "none"
-            retour.style.display = "flex"
-        
-            let listWrapper = document.createElement("ol")
-            for (let l = 0; l < lignes.length; l++){
-                let liElement = document.createElement("li")
-                liElement.className = "list"
-                liElement.textContent = lignes[l].id
-                listWrapper.appendChild(liElement)
-            } 
-            section.appendChild(listWrapper)
-            body.appendChild("body")
-        } else{
-            bouton.style.display = "flex"
-            retour.style.display = "none"
-        }
-        
+        bouton.style.display = "none"
+        retour.style.display = "flex"
+        label.style.display = "none";
+
+        listWrapper.style.display = "block"
+    })
+
+    retour.addEventListener('click', ()=>{
+        bouton.style.display = "flex";
+        retour.style.display = "none";
+        label.style.display = "flex";
+
+        listWrapper.style.display = "none";
     })
 
 }
@@ -42,8 +50,10 @@ xhr.onreadystatechange = function(){
     if (xhr.status === 200 && xhr.readyState === 4){
         let reponse = JSON.parse(xhr.responseText)
         let lignes = reponse.lines.line
-        afficherDonnee(lignes)
         console.log(lignes)
+        afficherDonnee(lignes)
     }
-
 }
+
+xhr.send()
+
