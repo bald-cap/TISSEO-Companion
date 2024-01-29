@@ -1,1 +1,26 @@
+.display{
+  /*padding: 1ex;*/
+  width: 25%;
+  heeight:25%;
+  text-align: center; 
+  position: relative; 
+  margin: top 150px;
+}
+body{
+    background-image: url(TOULOUSE.jpg);
+    background-repeat: no-repeat ;
+    background-position: center;
+    background-attachment: fixed;
+    background-size:cover; 
+}
 
+.centrer{
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    flex-direction: column;
+}
+.list{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font
+}
