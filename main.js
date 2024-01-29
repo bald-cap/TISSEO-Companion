@@ -3,7 +3,7 @@
 
 //REQUETES XHR
 
-//Défi 1.2 ->
+//Défi 1.3 ->
 //Affichage de tous les Lignes
 
 let bouton = document.querySelector(".display")
@@ -15,10 +15,14 @@ let label = document.querySelector("label")
 function afficherDonnee(lignes){
     let listWrapper = document.createElement("ol")
     listWrapper.className = "list-wrapper"
-        for (let way = 0; way < lignes.length; way++){
+    listWrapper.style.display = "none";
+        for (const{shortName} of lignes){
             let liElement = document.createElement("li")
+            
+            //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
+            
             liElement.className = "list"
-            liElement.textContent = lignes[way].shortName
+            liElement.textContent = `${shortName}`
             listWrapper.appendChild(liElement)
         } 
     section.appendChild(listWrapper)
@@ -30,7 +34,7 @@ function afficherDonnee(lignes){
         retour.style.display = "flex"
         label.style.display = "none";
 
-        listWrapper.style.display = "block"
+        listWrapper.style.display = "flex"
     })
 
     retour.addEventListener('click', ()=>{
