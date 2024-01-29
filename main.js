@@ -14,14 +14,15 @@ let label = document.querySelector("label")
 
 function afficherDonnee(lignes){
     let listWrapper = document.createElement("ol")
-    listWrapper.className = "list-wrapper"
-        for (let way = 0; way < lignes.length; way++){
+    listWrapper.className = "list-wrapper";
+    listWrapper.style.display = "none";
+        for (const{shortName, id} of lignes){
             let liElement = document.createElement("li")
             let newBouton = document.createElement("button")
             
             //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
             
-            newBouton.textContent = lignes[way].shortName
+            newBouton.textContent = `${shortName}`
             liElement.className = "list"
             liElement.appendChild(newBouton)
             listWrapper.appendChild(liElement)
@@ -35,7 +36,7 @@ function afficherDonnee(lignes){
         retour.style.display = "flex"
         label.style.display = "none";
 
-        listWrapper.style.display = "block"
+        listWrapper.style.display = "flex"
     })
 
     retour.addEventListener('click', ()=>{
