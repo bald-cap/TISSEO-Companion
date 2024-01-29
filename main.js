@@ -3,7 +3,7 @@
 
 //REQUETES XHR
 
-//Défi 1.2 ->
+//Défi 1.3 ->
 //Affichage de tous les Lignes
 
 let bouton = document.querySelector(".display")
@@ -17,8 +17,13 @@ function afficherDonnee(lignes){
     listWrapper.className = "list-wrapper"
         for (let way = 0; way < lignes.length; way++){
             let liElement = document.createElement("li")
+            let newBouton = document.createElement("button")
+            
+            //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
+            
+            newBouton.textContent = lignes[way].shortName
             liElement.className = "list"
-            liElement.textContent = lignes[way].shortName
+            liElement.appendChild(newBouton)
             listWrapper.appendChild(liElement)
         } 
     section.appendChild(listWrapper)
