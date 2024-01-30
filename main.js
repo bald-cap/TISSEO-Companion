@@ -18,7 +18,7 @@ function afficherDonnee(lignes){
     listWrapper.style.display = `none`;
 
     let lineInfoWrapper = document.createElement(`ol`)
-        for (const{shortName, id/* n'est pas utilisé */} of lignes){
+        for (const{shortName, id} of lignes){
             let liElement = document.createElement(`li`)
             let newBouton = document.createElement(`button`)
             
