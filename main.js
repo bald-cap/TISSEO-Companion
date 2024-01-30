@@ -6,24 +6,25 @@
 //Défi 1.3 ->
 //Affichage de tous les Lignes
 
-let bouton = document.querySelector(".display")
-let retour = document.querySelector(".retour")
-let section = document.createElement("section")
-let body = document.querySelector("body")
-let label = document.querySelector("label")
+let bouton = document.querySelector(`.display`)
+let retour = document.querySelector(`.retour`)
+let section = document.createElement(`section`)
+let body = document.querySelector(`body`)
+let label = document.querySelector(`label`)
 
 function afficherDonnee(lignes){
-    let listWrapper = document.createElement("ol")
-    listWrapper.className = "list-wrapper";
-    listWrapper.style.display = "none";
+    let listWrapper = document.createElement(`ol`)
+    listWrapper.className = `list-wrapper`;
+    listWrapper.style.display = `none`;
         for (const{shortName, id/* n'est pas utilisé */} of lignes){
-            let liElement = document.createElement("li")
-            let newBouton = document.createElement("button")
+            let liElement = document.createElement(`li`)
+            let newBouton = document.createElement(`button`)
             
             //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
             
             newBouton.textContent = `${shortName}`
-            liElement.className = "list"
+            newBouton.className = `lines`
+            liElement.className = `list`
             liElement.appendChild(newBouton)
             listWrapper.appendChild(liElement)
         } 
@@ -32,34 +33,75 @@ function afficherDonnee(lignes){
     
 
     bouton.addEventListener('click', ()=>{
-        bouton.style.display = "none"
-        retour.style.display = "flex"
-        label.style.display = "none";
+        bouton.style.display = `none`
+        retour.style.display = `flex`
+        label.style.display = `none`;
 
-        listWrapper.style.display = "flex"
+        listWrapper.style.display = `flex`
     })
 
     retour.addEventListener('click', ()=>{
-        bouton.style.display = "flex";
-        retour.style.display = "none";
-        label.style.display = "flex";
+        bouton.style.display = `flex`;
+        retour.style.display = `none`;
+        label.style.display = `flex`;
 
-        listWrapper.style.display = "none";
+        listWrapper.style.display = `none`;
     })
-
 }
 
+
 // Requete pour avoir tous les Lignes proposés
+
 const xhr = new XMLHttpRequest()
 xhr.open("GET", "https://api.tisseo.fr/v2/lines.json?key=a3732a1074e2403ce364ad6e71eb998cb")
 xhr.onreadystatechange = function(){
     if (xhr.status === 200 && xhr.readyState === 4){
         let reponse = JSON.parse(xhr.responseText)
         let lignes = reponse.lines.line
-        console.log(lignes)
+        // console.log(lignes)
         afficherDonnee(lignes)
     }
 }
 
 xhr.send()
 
+
+
+// Requete pour recuperer les arrets d'une ligne en question
+// function fetchStopsLine(lineNb){
+//     const xhr = new XMLHttpRequest()
+//     xhr.open("GET", "https://api.tisseo.fr/v2/stop_points.json?key=a3732a1074e2403ce364ad6e71eb998cb&lineId=" + "line:61")
+//     xhr.onreadystatechange = () =>{
+//         if (xhr.status === 200 && xhr.readyState === 4){
+//             let reponse = JSON.parse(xhr.responseText)
+//             let arrets = reponse.lines.line
+//             console.log(arrets)
+//             // showArrets(arrets)
+//         }
+//     }
+
+//     xhr.send()
+// }
+
+// function showArrets(arrets){
+//     let listWrapper = document.createElement(`ol`)
+//     listWrapper.className = `stops-wrapper`;
+//     listWrapper.style.display = `none`;
+//         for (const{id , shortName}/* n'est pas utilisé */ of arrets){
+//             let liElement = document.createElement(`li`)
+//             let newBouton = document.createElement(`button`)
+            
+//             //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
+            
+//             newBouton.textContent = `${shortName}`
+//             newBouton.className = `lines`
+//             liElement.className = `list`
+//             liElement.appendChild(newBouton)
+//             listWrapper.appendChild(liElement)
+
+            
+//         } 
+//     section.appendChild(listWrapper)
+//     body.appendChild(section)   
+    
+// }
