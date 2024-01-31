@@ -77,6 +77,27 @@ button:hover{
     align-items: center;
     flex-direction: column;
     border : 2px solid #F8F8FF;
+    background-color: #0d0d0d;
+    color: #F8F8FF;
     border-radius: 20px;
     padding: 15px 70px;
+}
+
+.return-img{
+    width: 30px;
+    height: 30px;
+    border: 3px solid #0d0d0d;
+    background-color: #F8F8FF;
+    border-radius: 15px;
+    padding: 5px 20px;
+}
+
+.return-img:hover{
+    border: 3px solid #F8F8FF;
+    background-color: #0d0d0d;
+    cursor: pointer;
+}
+
+.stops-article-wrapper{
+    margin-top: 10px;
 }

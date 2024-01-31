@@ -95,15 +95,18 @@ function fetchStopsLine(lineNb){
 //A modifier
 function showArrets(arrets){
 
-    let listWrapper = document.querySelector('.stops-wrapper');
-
-    if (!listWrapper) {
-        listWrapper = document.createElement('ol');
-        listWrapper.className = `stops-wrapper`;
-        document.querySelector(`.list-wrapper`).appendChild(listWrapper);
+    let stopsWrapper = document.querySelector('.stops-wrapper');
+    let stopsWrapperContainer = document.querySelector(`.stops-article-wrapper`)
+    let returnImg = document.querySelector(`.return-img`)
+    
+    if (!stopsWrapper) {
+        stopsWrapper = document.createElement('ol');
+        stopsWrapper.className = `stops-wrapper`;
+        document.querySelector(`section`).appendChild(stopsWrapper);
+        stopsWrapperContainer.appendChild(stopsWrapper)
     }
 
-    listWrapper.innerHTML = ``;
+    stopsWrapper.innerHTML = ``;
 
     for (const arret of arrets){
         let liElement = document.createElement(`li`)
@@ -112,9 +115,32 @@ function showArrets(arrets){
         
         liElement.className = `list`
         liElement.textContent = arret.name
-        listWrapper.appendChild(liElement)
+        stopsWrapper.appendChild(liElement)
     } 
 
-    listWrapper.style.display = 'flex';
+    if (stopsWrapper.style.display === `flex`){
+        stopsWrapper.style.display = `none`;
+
+        document.querySelector(`.list-wrapper`).style.display = `flex`
+        returnImg.style.display = `none`
+        returnImg.addEventListener(`click`, () =>{
+            stopsWrapper.style.display = `flex`;
+            document.querySelector(`.list-wrapper`).style.display = `none`
+        })
         
+    } else{
+        stopsWrapper.style.display = `flex`;
+
+        document.querySelector(`.list-wrapper`).style.display = `none`
+        returnImg.style.display = `flex`
+        returnImg.addEventListener(`click`, () =>{
+            stopsWrapper.style.display = `none`;
+            document.querySelector(`.list-wrapper`).style.display = `flex`
+
+        })
+        
+
+    }
+    
+    // listWrapper.style.display = `flex`; 
 }
