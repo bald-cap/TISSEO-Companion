@@ -120,13 +120,7 @@ function showArrets(arrets){
 
     if (stopsWrapper.style.display === `flex`){
         stopsWrapper.style.display = `none`;
-
         document.querySelector(`.list-wrapper`).style.display = `flex`
-        returnImg.style.display = `none`
-        returnImg.addEventListener(`click`, () =>{
-            stopsWrapper.style.display = `flex`;
-            document.querySelector(`.list-wrapper`).style.display = `none`
-        })
         
     } else{
         stopsWrapper.style.display = `flex`;
@@ -136,10 +130,8 @@ function showArrets(arrets){
         returnImg.addEventListener(`click`, () =>{
             stopsWrapper.style.display = `none`;
             document.querySelector(`.list-wrapper`).style.display = `flex`
-
+            returnImg.style.display = `none`
         })
-        
-
     }
     
     // listWrapper.style.display = `flex`; 
