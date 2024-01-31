@@ -6,6 +6,7 @@
 //Défi 1.3 ->
 //Affichage de tous les Lignes
 
+
 let bouton = document.querySelector(`.display`)
 let retour = document.querySelector(`.retour`)
 let section = document.createElement(`section`)
@@ -17,7 +18,6 @@ function afficherDonnee(lignes){
     listWrapper.className = `list-wrapper`;
     listWrapper.style.display = `none`;
 
-    let lineInfoWrapper = document.createElement(`ol`)
         for (const{shortName, id} of lignes){
             let liElement = document.createElement(`li`)
             let newBouton = document.createElement(`button`)
@@ -28,7 +28,7 @@ function afficherDonnee(lignes){
             newBouton.className = `lines`
             
             newBouton.addEventListener(`click`, ()=>{
-                fetchStopsLine(`${id}`, lineInfoWrapper)
+                fetchStopsLine(`${id}`)
                 // console.log(`${id}`)
             })
             liElement.className = `list`
@@ -54,13 +54,6 @@ function afficherDonnee(lignes){
 
         listWrapper.style.display = `none`;
     })
-
-
-    let newBoutons = document.querySelectorAll(`lines`)
-    newBoutons.forEach(bouton =>{
-        
-    })
-
 }
 
 
@@ -82,16 +75,17 @@ xhr.send()
 
 
 // Requete pour recuperer les arrets d'une ligne en question
-function fetchStopsLine(lineNb, lineInfoWrapper){
+function fetchStopsLine(lineNb){
     const xhr = new XMLHttpRequest()
     xhr.open("GET", "https://api.tisseo.fr/v2/stop_points.json?key=a3732a1074e2403ce364ad6e71eb998cb&lineId=" + `${lineNb}`)
     xhr.onreadystatechange = () =>{
         if (xhr.status === 200 && xhr.readyState === 4){
             let reponse = JSON.parse(xhr.responseText)
-            console.log(xhr.responseText)
+            // console.log(xhr.responseText)
             let arrets = reponse.physicalStops.physicalStop
+
             console.log(arrets)
-            showArrets(arrets, lineInfoWrapper)
+             showArrets(arrets)
         }
     }
 
@@ -99,18 +93,28 @@ function fetchStopsLine(lineNb, lineInfoWrapper){
 }
 
 //A modifier
-function showArrets(arrets, lineInfoWrapper){
-    let listWrapper = document.createElement(`ol`)
-    listWrapper.className = `stops-wrapper`;
-    listWrapper.style.display = `none`;
-        for (const{name}of arrets){
-            let liElement = document.createElement(`li`)
-            
-            //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
-            
-            liElement.className = `list`
-            liElement.textContent = `${name}`
-            listWrapper.appendChild(liElement)
-        } 
-    lineInfoWrapper.appendChild(listWrapper)
+function showArrets(arrets){
+
+    let listWrapper = document.querySelector('.stops-wrapper');
+
+    if (!listWrapper) {
+        listWrapper = document.createElement('ol');
+        listWrapper.className = `stops-wrapper`;
+        document.querySelector(`.list-wrapper`).appendChild(listWrapper);
+    }
+
+    listWrapper.innerHTML = ``;
+
+    for (const arret of arrets){
+        let liElement = document.createElement(`li`)
+        
+        //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
+        
+        liElement.className = `list`
+        liElement.textContent = arret.name
+        listWrapper.appendChild(liElement)
+    } 
+
+    listWrapper.style.display = 'flex';
+        
 }

@@ -40,10 +40,10 @@ label{
 .list-wrapper{
     background-color: #0d0d0d;
     color: #F8F8FF;
-    padding : 10px 150px;
+    padding : 20px 150px;
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 20px;
     border: 2px solid #F8F8FF;
 }
 
@@ -69,4 +69,14 @@ button:hover{
     font-weight:  bold;
     font-size: larger;
     cursor: pointer;
+}
+
+.stops-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border : 2px solid #F8F8FF;
+    border-radius: 20px;
+    padding: 15px 70px;
 }
