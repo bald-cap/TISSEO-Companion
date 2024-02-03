@@ -80,7 +80,7 @@ button:hover{
     background-color: #0d0d0d;
     color: #F8F8FF;
     border-radius: 20px;
-    padding: 15px 70px;
+    padding: 35px 70px;
 }
 
 .return-img{
@@ -93,11 +93,28 @@ button:hover{
 }
 
 .return-img:hover{
-    border: 3px solid #F8F8FF;
+    border: 3px solid #333333;
     background-color: #0d0d0d;
     cursor: pointer;
 }
 
 .stops-article-wrapper{
     margin-top: 10px;
+    /* padding-top: 0px; */
+}
+
+.horaire-article-wrapper .return-img{
+   margin-top: 10px;
+}
+
+.horaire-wrapper{
+    color: #F8F8FF;
+    background-color: #0d0d0d;
+    border: 3px solid #F8F8FF;
+    border-radius: 20px;
+    padding: 40px 40px 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

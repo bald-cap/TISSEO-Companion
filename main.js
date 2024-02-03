@@ -25,7 +25,6 @@ function afficherDonnee(lignes){
             //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
             
             newBouton.textContent = `${shortName}`
-            newBouton.className = `lines`
             
             newBouton.addEventListener(`click`, ()=>{
                 fetchStopsLine(`${id}`)
@@ -84,7 +83,7 @@ function fetchStopsLine(lineNb){
             // console.log(xhr.responseText)
             let arrets = reponse.physicalStops.physicalStop
 
-            console.log(arrets)
+            // console.log(arrets)
              showArrets(arrets)
         }
     }
@@ -92,12 +91,12 @@ function fetchStopsLine(lineNb){
     xhr.send()
 }
 
-//A modifier
+//Fonction qui affiche les arrets
 function showArrets(arrets){
 
     let stopsWrapper = document.querySelector('.stops-wrapper');
     let stopsWrapperContainer = document.querySelector(`.stops-article-wrapper`)
-    let returnImg = document.querySelector(`.return-img`)
+    let returnImg = document.querySelector(`.stops-article-wrapper .return-img`)
     
     if (!stopsWrapper) {
         stopsWrapper = document.createElement('ol');
@@ -110,12 +109,16 @@ function showArrets(arrets){
 
     for (const arret of arrets){
         let liElement = document.createElement(`li`)
-        
-        //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
-        
+        let stopBouton = document.createElement(`button`)
+                
         liElement.className = `list`
-        liElement.textContent = arret.name
+        stopBouton.textContent = arret.name
+        liElement.appendChild(stopBouton)
         stopsWrapper.appendChild(liElement)
+
+        stopBouton.addEventListener(`click`, function(){
+            fetchHoraire(`${arret.id}`)
+        })
     } 
 
     if (stopsWrapper.style.display === `flex`){
@@ -133,6 +136,59 @@ function showArrets(arrets){
             returnImg.style.display = `none`
         })
     }
+}
+
+//Fonction qui affiche l'horaire du bus
+function fetchHoraire(id){
+    let xhr = new XMLHttpRequest()
+    xhr.open('GET', "https://api.tisseo.fr/v2/stops_schedules.json?key=a3732a1074e2403ce364ad6e71eb998cb&stopPointId=" + `${id}`)
+    xhr.onreadystatechange = () => {
+        if (xhr.status === 200 && xhr.readyState === 4){
+            let response = JSON.parse(xhr.responseText)
+            console.log(response.departures.departure)
+            showHoraire(response.departures.departure)
+        }
+    }
+
+    xhr.send()
+}
+
+function showHoraire(horaires){
+    let horaireArticleWrapper = document.querySelector('.horaire-article-wrapper');
+    let horaireWrapper = document.querySelector(`.horaire-wrapper`)
+    let returnImg = document.querySelector(`.horaire-article-wrapper .return-img`)
     
-    // listWrapper.style.display = `flex`; 
+    if (!horaireWrapper) {
+        horaireWrapper = document.createElement('ol');
+        horaireWrapper.className = `horaire-wrapper`;
+        horaireArticleWrapper.appendChild(horaireWrapper);
+    }
+
+    horaireWrapper.innerHTML = ``;
+
+    for (const horaire of horaires){
+        let liElement = document.createElement(`li`)
+        // let horaireBouton = document.createElement(`button`)
+                
+        liElement.className = `list`
+        liElement.textContent = horaire.dateTime
+        // liElement.appendChild(horaireBouton)
+        horaireWrapper.appendChild(liElement)
+    } 
+
+    if (horaireArticleWrapper.style.display === `flex`){
+        horaireArticleWrapper.style.display = `none`;
+        document.querySelector(`.stops-article-wrapper`).style.display = `flex`
+        
+    } else{
+        horaireArticleWrapper.style.display = `flex`;
+
+        document.querySelector(`.stops-article-wrapper`).style.display = `none`
+        returnImg.style.display = `flex`
+        returnImg.addEventListener(`click`, () =>{
+            horaireArticleWrapper.style.display = `none`;
+            document.querySelector(`.stops-article-wrapper`).style.display = `flex`
+            returnImg.style.display = `none`
+        })
+    }
 }
