@@ -127,10 +127,12 @@ function showArrets(arrets){
         
     } else{
         stopsWrapper.style.display = `flex`;
+        retour.style.display = `none`
 
         document.querySelector(`.list-wrapper`).style.display = `none`
         returnImg.style.display = `flex`
         returnImg.addEventListener(`click`, () =>{
+            retour.style.display = `flex`
             stopsWrapper.style.display = `none`;
             document.querySelector(`.list-wrapper`).style.display = `flex`
             returnImg.style.display = `none`
