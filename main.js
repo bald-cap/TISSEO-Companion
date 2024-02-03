@@ -121,13 +121,16 @@ function showArrets(arrets){
     if (stopsWrapper.style.display === `flex`){
         stopsWrapper.style.display = `none`;
         document.querySelector(`.list-wrapper`).style.display = `flex`
-        
+ 
     } else{
         stopsWrapper.style.display = `flex`;
+        document.querySelector(`.retour`).style.display = `none`;
 
         document.querySelector(`.list-wrapper`).style.display = `none`
         returnImg.style.display = `flex`
+       
         returnImg.addEventListener(`click`, () =>{
+            document.querySelector(`.retour`).style.display = `flex`;
             stopsWrapper.style.display = `none`;
             document.querySelector(`.list-wrapper`).style.display = `flex`
             returnImg.style.display = `none`
