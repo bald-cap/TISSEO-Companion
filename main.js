@@ -60,7 +60,7 @@ function afficherDonnee(lignes){
 // Requete pour avoir tous les Lignes proposés
 
 const xhr = new XMLHttpRequest()
-xhr.open("GET", "https://api.tisseo.fr/v2/lines.json?key=a3732a1074e2403ce364ad6e71eb998cb")
+xhr.open(`GET`, "https://api.tisseo.fr/v2/lines.json?key=a3732a1074e2403ce364ad6e71eb998cb")
 xhr.onreadystatechange = function(){
     if (xhr.status === 200 && xhr.readyState === 4){
         let reponse = JSON.parse(xhr.responseText)
@@ -77,7 +77,7 @@ xhr.send()
 // Requete pour recuperer les arrets d'une ligne en question
 function fetchStopsLine(lineNb){
     const xhr = new XMLHttpRequest()
-    xhr.open("GET", "https://api.tisseo.fr/v2/stop_points.json?key=a3732a1074e2403ce364ad6e71eb998cb&lineId=" + `${lineNb}`)
+    xhr.open(`GET`, `https://api.tisseo.fr/v2/stop_points.json?key=a3732a1074e2403ce364ad6e71eb998cb&lineId=` + `${lineNb}`)
     xhr.onreadystatechange = () =>{
         if (xhr.status === 200 && xhr.readyState === 4){
             let reponse = JSON.parse(xhr.responseText)
@@ -95,12 +95,12 @@ function fetchStopsLine(lineNb){
 //A modifier
 function showArrets(arrets){
 
-    let stopsWrapper = document.querySelector('.stops-wrapper');
+    let stopsWrapper = document.querySelector(`.stops-wrapper`);
     let stopsWrapperContainer = document.querySelector(`.stops-article-wrapper`)
     let returnImg = document.querySelector(`.return-img`)
     
     if (!stopsWrapper) {
-        stopsWrapper = document.createElement('ol');
+        stopsWrapper = document.createElement(`ol`);
         stopsWrapper.className = `stops-wrapper`;
         document.querySelector(`section`).appendChild(stopsWrapper);
         stopsWrapperContainer.appendChild(stopsWrapper)
