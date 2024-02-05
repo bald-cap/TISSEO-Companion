@@ -18,13 +18,13 @@ function afficherDonnee(lignes){
     listWrapper.className = `list-wrapper`;
     listWrapper.style.display = `none`;
 
-        for (const{shortName, id} of lignes){
+        for (const{name, shortName, id} of lignes){
             let liElement = document.createElement(`li`)
             let newBouton = document.createElement(`button`)
             
             //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
             
-            newBouton.textContent = `${shortName}`
+            newBouton.textContent = `${shortName} - ${name}`
             
             newBouton.addEventListener(`click`, ()=>{
                 fetchStopsLine(`${id}`)
@@ -147,8 +147,9 @@ function fetchHoraire(id){
     xhr.onreadystatechange = () => {
         if (xhr.status === 200 && xhr.readyState === 4){
             let response = JSON.parse(xhr.responseText)
-            console.log(response.departures.departure)
-            showHoraire(response.departures.departure)
+            let horaires = response.departures.departure
+            // console.log(response.departures.departure)
+            showHoraire(horaires)
         }
     }
 
