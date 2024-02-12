@@ -22,8 +22,6 @@ function afficherDonnee(lignes){
             let liElement = document.createElement(`li`)
             let newBouton = document.createElement(`button`)
             
-            //A modifier pour acceder l'ID pour ensuite l'afficher à l'utilisateur 
-            
             newBouton.textContent = `${shortName} - ${name}`
             
             newBouton.addEventListener(`click`, ()=>{
