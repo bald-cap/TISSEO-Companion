@@ -1,0 +1,52 @@
+body, section, .canvas-wrapper{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 1200px;
+}
+.button-wrapper{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.canvas-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Graph-1-label, .Graph-2-label, .Graph-3-label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+}
+
+#btn-barGraph, #btn-lineGraph, #btn-barGraph-mod{
+    background-color:#23212fc6 ;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: 0.4s;
+    border: 3px solid #aca7cb;
+}
+
+#btn-barGraph:hover, #btn-lineGraph:hover, #btn-barGraph-mod:hover{
+    cursor: pointer;
+    background-color: #23212f;
+    color: whitesmoke;
+}
+
+.Graph-2-label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+span{
+    font-weight: lighter;
+    font-size: large;
+    font-style: italic;
+    color: #23212fa2;
+}
